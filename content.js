@@ -9,8 +9,8 @@ let xOffset = 0;
 let yOffset = 0;
 
 const videoUrls = {
-  carpet: chrome.runtime.getURL('video/мойка.mp4'),
-  subway: chrome.runtime.getURL('video/subway.mp4')
+  carpet: chrome.runtime.getURL('мойка.mp4'),
+  subway: chrome.runtime.getURL('subway.mp4')
 };
 
 function createVideoPlayer(videoType) {
@@ -19,17 +19,17 @@ function createVideoPlayer(videoType) {
   }
 
   videoContainer = document.createElement('div');
-  videoContainer.className = 'video-container';
+  videoContainer.className = 'anti-sdvg-video-container';
   videoContainer.style.left = '50px';
   videoContainer.style.top = '50px';
 
   // Create drag handle
   dragHandle = document.createElement('div');
-  dragHandle.className = 'drag-handle';
+  dragHandle.className = 'anti-sdvg-drag-handle';
   
   // Create close button
   const closeButton = document.createElement('button');
-  closeButton.className = 'close-button';
+  closeButton.className = 'anti-sdvg-close-button';
   closeButton.innerHTML = '×';
   closeButton.onclick = function() {
     document.body.removeChild(videoContainer);
