@@ -9,8 +9,9 @@ let xOffset = 0;
 let yOffset = 0;
 
 const videoUrls = {
-  carpet: chrome.runtime.getURL('мойка.mp4'),
-  subway: chrome.runtime.getURL('subway.mp4')
+  carpet: chrome.runtime.getURL('videos/carpet.mp4'),
+  subway: chrome.runtime.getURL('videos/subway.mp4'),
+  slimes1: chrome.runtime.getURL('videos/slimes1.mp4'),
 };
 
 function createVideoPlayer(videoType) {
@@ -26,22 +27,23 @@ function createVideoPlayer(videoType) {
   // Create drag handle
   dragHandle = document.createElement('div');
   dragHandle.className = 'anti-sdvg-drag-handle';
-  
+
   // Create close button
   const closeButton = document.createElement('button');
   closeButton.className = 'anti-sdvg-close-button';
   closeButton.innerHTML = '×';
-  closeButton.onclick = function() {
+  closeButton.onclick = function () {
     document.body.removeChild(videoContainer);
     videoContainer = null;
   };
   dragHandle.appendChild(closeButton);
-  
+
   const video = document.createElement('video');
   video.src = videoUrls[videoType];
   video.controls = true;
   video.autoplay = true;
-  
+  video.loop = true;
+
   videoContainer.appendChild(dragHandle);
   videoContainer.appendChild(video);
   document.body.appendChild(videoContainer);
@@ -57,7 +59,7 @@ function dragStart(e) {
     initialX = e.clientX - xOffset;
     initialY = e.clientY - yOffset;
     isDragging = true;
-    
+
     // Prevent text selection during drag
     e.preventDefault();
   }
@@ -66,7 +68,7 @@ function dragStart(e) {
 function drag(e) {
   if (isDragging) {
     e.preventDefault();
-    
+
     currentX = e.clientX - initialX;
     currentY = e.clientY - initialY;
 
@@ -86,7 +88,7 @@ function dragEnd(e) {
   isDragging = false;
 }
 
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   if (request.action === 'playVideo') {
     createVideoPlayer(request.video);
   }
