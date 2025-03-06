@@ -1,21 +1,35 @@
 {
   "manifest_version": 3,
-  "name": "Video Player Extension",
+  "name": "AntiSDVG",
   "version": "1.0",
-  "description": "Extension for playing videos with draggable player",
-  "permissions": ["activeTab"],
-  "web_accessible_resources": [{
-    "resources": ["*.mp4"],
-    "matches": ["<all_urls>"]
-  }],
+  "description": "Запускайте залипательные видео на страницах",
+  "permissions": [
+    "activeTab"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "*.mp4"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
   "action": {
     "default_popup": "popup.html"
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"],
-      "css": ["styles.css"]
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "styles.css"
+      ]
     }
   ]
-} 
+}
